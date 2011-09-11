@@ -1,0 +1,9 @@
+(name [#!/usr/bin/env ruby -wKU])
+
+(trigger
+    (tab rb))
+
+(only-in source.ruby)
+
+(snippet [#!/usr/bin/env ruby%{TM_RUBY_SWITCHES=" -wKU"}
+])

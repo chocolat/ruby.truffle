@@ -1,0 +1,8 @@
+(name [assert(..)])
+
+(trigger
+    (tab as))
+
+(only-in source.ruby)
+
+(snippet [assert`snippet_paren.rb`%{1="test"}, "%{0="Failure message."}"`snippet_paren.rb end`])

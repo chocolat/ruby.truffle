@@ -1,0 +1,8 @@
+(name [find_all { |e| .. }])
+
+(trigger
+    (tab fina))
+
+(only-in source.ruby)
+
+(snippet [find_all { |%{1="e"}| %{0} }])

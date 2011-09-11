@@ -1,0 +1,8 @@
+(name [Hash Pointer — =>])
+
+(trigger
+    (key [[ctrl]L]))
+
+(only-in source.ruby)
+
+(snippet [ => ])

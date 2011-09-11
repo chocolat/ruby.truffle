@@ -1,0 +1,8 @@
+(name [results.report(..) { .. }])
+
+(trigger
+    (tab rep))
+
+(only-in source.ruby)
+
+(snippet [results.report("%{1="name"}:") { TESTS.times { %{0} } }])

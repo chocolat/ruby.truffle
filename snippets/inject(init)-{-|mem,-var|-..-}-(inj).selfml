@@ -1,0 +1,8 @@
+(name [inject(init) { |mem, var| .. }])
+
+(trigger
+    (tab inj))
+
+(only-in source.ruby)
+
+(snippet [inject%{1/.+/(/}%{1="init"}%{1/.+/)/} { |%{2="mem"}, %{3="var"}| %{0} }])

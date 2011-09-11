@@ -1,0 +1,12 @@
+(name [include Comparable ..])
+
+(trigger
+    (tab Comp))
+
+(only-in source.ruby)
+
+(snippet [include Comparable
+
+def <=>(other)
+	%{0}
+end])

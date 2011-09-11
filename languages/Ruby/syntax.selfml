@@ -1,0 +1,909 @@
+(root source.ruby
+    (zone meta.class.ruby
+        (match
+            (regex [^\s*(class)\s+(([.a-zA-Z0-9_:]+(\s*(<)\s*[.a-zA-Z0-9_:]+)?)|((<<)\s*[.a-zA-Z0-9_:]+))]
+                (7 punctuation.definition.variable.ruby)
+                (4 entity.other.inherited-class.ruby)
+                (5 punctuation.separator.inheritance.ruby)
+                (1 keyword.control.class.ruby)
+                (6 variable.other.object.ruby)
+                (2 entity.name.type.class.ruby))))
+    (zone meta.module.ruby
+        (match
+            (regex [^\s*(module)\s+(([A-Z]\w*(::))?([A-Z]\w*(::))?([A-Z]\w*(::))*[A-Z]\w*)]
+                (7 entity.other.inherited-class.module.third.ruby)
+                (3 entity.other.inherited-class.module.first.ruby)
+                (8 punctuation.separator.inheritance.ruby)
+                (4 punctuation.separator.inheritance.ruby)
+                (5 entity.other.inherited-class.module.second.ruby)
+                (1 keyword.control.module.ruby)
+                (6 punctuation.separator.inheritance.ruby)
+                (2 entity.name.type.module.ruby))))
+    (zone invalid.deprecated.ruby
+        (match
+            (regex [(?<!\.)\belse(\s)+if\b])))
+    (zone keyword.control.ruby
+        (match
+            (regex [(?<!\.)\b(BEGIN|begin|case|class|else|elsif|END|end|ensure|for|if|in|module|rescue|then|unless|until|when|while)\b(?![?!])])))
+    (zone keyword.control.start-block.ruby
+        (match
+            (regex [(?<!\.)\bdo\b\s*])))
+    (zone meta.syntax.ruby.start-block
+        (match
+            (regex [(?<=\{)(\s+)])))
+    (zone keyword.operator.logical.ruby
+        (match
+            (regex [(?<!\.)\b(and|not|or)\b])))
+    (zone keyword.control.pseudo-method.ruby
+        (match
+            (regex [(?<!\.)\b(alias|alias_method|break|next|redo|retry|return|super|undef|yield)\b(?![?!])|\bdefined\?|\bblock_given\?])))
+    (zone constant.language.ruby
+        (match
+            (regex [\b(nil|true|false)\b(?![?!])])))
+    (zone variable.language.ruby
+        (match
+            (regex [\b(__(FILE|LINE)__|self)\b(?![?!])])))
+    (zone keyword.other.special-method.ruby
+        (match
+            (regex [\b(initialize|new|loop|include|extend|raise|attr_reader|attr_writer|attr_accessor|attr|catch|throw|private|module_function|public|protected)\b(?![?!])])))
+    (zone meta.require.ruby
+        (start
+            (regex [\b(require|gem)\b]
+                (1 keyword.other.special-method.ruby)))
+        (end
+            (regex [$|(?=#)]
+                (1 keyword.other.special-method.ruby)))
+        (subzones
+            (include $self)))
+    (zone variable.other.readwrite.instance.ruby
+        (match
+            (regex [(@)[a-zA-Z_]\w*]
+                (1 punctuation.definition.variable.ruby))))
+    (zone variable.other.readwrite.class.ruby
+        (match
+            (regex [(@@)[a-zA-Z_]\w*]
+                (1 punctuation.definition.variable.ruby))))
+    (zone variable.other.readwrite.global.ruby
+        (match
+            (regex [(\$)[a-zA-Z_]\w*]
+                (1 punctuation.definition.variable.ruby))))
+    (zone variable.other.readwrite.global.pre-defined.ruby
+        (match
+            (regex [(\$)(!|@|&|`|'|\+|\d+|~|=|/|\\|,|;|\.|<|>|_|\*|\$|\?|:|"|-[0adFiIlpv])]
+                (1 punctuation.definition.variable.ruby))))
+    (zone meta.environment-variable.ruby
+        (start
+            (regex `\b(ENV)\[`
+                (1 variable.other.constant.ruby)))
+        (end
+            (regex `\]`))
+        (subzones
+            (include $self)))
+    (zone support.class.ruby
+        (match
+            (regex `\b[A-Z]\w*(?=((\.|::)[A-Za-z]|\[))`)))
+    (zone variable.other.constant.ruby
+        (match
+            (regex [\b[A-Z]\w*\b])))
+    (zone meta.function.method.with-arguments.ruby
+        (start
+            (regex [(?x)
+			         (?=def\b)                                                      # an optimization to help Oniguruma fail fast
+			         (?<=^|\s)(def)\s+                                              # the def keyword
+			         ( (?>[a-zA-Z_]\w*(?>\.|::))?                                   # a method name prefix
+			           (?>[a-zA-Z_]\w*(?>[?!]|=(?!>))?                              # the method name
+			           |===?|>[>=]?|<=>|<[<=]?|[%&`/\|]|\*\*?|=?~|[-+]@?|\[\]=?) )  # …or an operator method
+			         \s*(\()                                                        # the openning parenthesis for arguments
+			        ]
+                (3 punctuation.definition.parameters.ruby)
+                (1 keyword.control.def.ruby)
+                (2 entity.name.function.ruby)))
+        (end
+            (regex [\)]
+                (0 punctuation.definition.parameters.ruby)))
+        (subzones
+            (include $self)))
+    (zone meta.function.method.with-arguments.ruby
+        (start
+            (regex [(?x)
+			         (?=def\b)                                                      # an optimization to help Oniguruma fail fast
+			         (?<=^|\s)(def)\s+                                              # the def keyword
+			         ( (?>[a-zA-Z_]\w*(?>\.|::))?                                   # a method name prefix
+			           (?>[a-zA-Z_]\w*(?>[?!]|=(?!>))?                              # the method name
+			           |===?|>[>=]?|<=>|<[<=]?|[%&`/\|]|\*\*?|=?~|[-+]@?|\[\]=?) )  # …or an operator method
+			         [ \t]                                                          # the space separating the arguments
+			         (?=[ \t]*[^\s#;])                                              # make sure arguments and not a comment follow
+			        ]
+                (1 keyword.control.def.ruby)
+                (2 entity.name.function.ruby)))
+        (end
+            (regex $))
+        (subzones
+            (include $self)))
+    (zone meta.function.method.without-arguments.ruby
+        (match
+            (regex [(?x)
+			         (?=def\b)                                                           # an optimization to help Oniguruma fail fast
+			         (?<=^|\s)(def)\b                                                    # the def keyword
+			         ( \s+                                                               # an optional group of whitespace followed by…
+			           ( (?>[a-zA-Z_]\w*(?>\.|::))?                                      # a method name prefix
+			             (?>[a-zA-Z_]\w*(?>[?!]|=(?!>))?                                 # the method name
+			             |===?|>[>=]?|<=>|<[<=]?|[%&`/\|]|\*\*?|=?~|[-+]@?|\[\]=?) ) )?  # …or an operator method
+			        ]
+                (3 entity.name.function.ruby)
+                (1 keyword.control.def.ruby))))
+    (zone constant.numeric.ruby
+        (match
+            (regex [\b(0[xX]\h(?>_?\h)*|\d(?>_?\d)*(\.(?![^[:space:][:digit:]])(?>_?\d)*)?([eE][-+]?\d(?>_?\d)*)?|0[bB][01]+)\b])))
+    (zone constant.other.symbol.single-quoted.ruby
+        (start
+            (regex :'
+                (0 punctuation.definition.constant.ruby)))
+        (end
+            (regex '
+                (0 punctuation.definition.constant.ruby)))
+        (subzones
+            (zone constant.character.escape.ruby
+                (match
+                    (regex [\\['\\]])))))
+    (zone constant.other.symbol.double-quoted.ruby
+        (start
+            (regex :"
+                (0 punctuation.definition.constant.ruby)))
+        (end
+            (regex "
+                (0 punctuation.definition.constant.ruby)))
+        (subzones
+            (include @interpolated_ruby)
+            (include @escaped_char)))
+    (zone keyword.operator.assignment.augmented.ruby
+        (match /=))
+    (zone string.quoted.single.ruby
+        (start
+            (regex '
+                (0 punctuation.definition.string.begin.ruby)))
+        (end
+            (regex '
+                (0 punctuation.definition.string.end.ruby)))
+        (subzones
+            (zone constant.character.escape.ruby
+                (match
+                    (regex \\'|\\\\)))))
+    (zone string.quoted.double.ruby
+        (start
+            (regex "
+                (0 punctuation.definition.string.begin.ruby)))
+        (end
+            (regex "
+                (0 punctuation.definition.string.end.ruby)))
+        (subzones
+            (include @interpolated_ruby)
+            (include @escaped_char)))
+    (zone string.interpolated.ruby
+        (start
+            (regex [`]
+                (0 punctuation.definition.string.begin.ruby)))
+        (end
+            (regex [`]
+                (0 punctuation.definition.string.end.ruby)))
+        (subzones
+            (include @interpolated_ruby)
+            (include @escaped_char)))
+    (zone string.interpolated.ruby
+        (start
+            (regex [%x\{]
+                (0 punctuation.definition.string.begin.ruby)))
+        (end
+            (regex [\}]
+                (0 punctuation.definition.string.end.ruby)))
+        (subzones
+            (include @interpolated_ruby)
+            (include @escaped_char)
+            (include @nest_curly_i)))
+    (zone string.interpolated.ruby
+        (start
+            (regex `%x\[`
+                (0 punctuation.definition.string.begin.ruby)))
+        (end
+            (regex `\]`
+                (0 punctuation.definition.string.end.ruby)))
+        (subzones
+            (include @interpolated_ruby)
+            (include @escaped_char)
+            (include @nest_brackets_i)))
+    (zone string.interpolated.ruby
+        (start
+            (regex %x\<
+                (0 punctuation.definition.string.begin.ruby)))
+        (end
+            (regex \>
+                (0 punctuation.definition.string.end.ruby)))
+        (subzones
+            (include @interpolated_ruby)
+            (include @escaped_char)
+            (include @nest_ltgt_i)))
+    (zone string.interpolated.ruby
+        (start
+            (regex [%x\(]
+                (0 punctuation.definition.string.begin.ruby)))
+        (end
+            (regex [\)]
+                (0 punctuation.definition.string.end.ruby)))
+        (subzones
+            (include @interpolated_ruby)
+            (include @escaped_char)
+            (include @nest_parens_i)))
+    (zone string.interpolated.ruby
+        (start
+            (regex [%x([^\w])]
+                (0 punctuation.definition.string.begin.ruby)))
+        (end
+            (regex \1
+                (0 punctuation.definition.string.end.ruby)))
+        (subzones
+            (include @interpolated_ruby)
+            (include @escaped_char)))
+    (zone
+        (inner-identifier string.regexp.classic.ruby)
+        (start
+            (regex `(?x)
+			   (?:
+			     ^                      # beginning of line
+			   | (?<=                   # or look-behind on:
+			       [=>~(?:\[,|&;]
+			     | [\s;]if\s			# keywords
+			     | [\s;]elsif\s
+			     | [\s;]while\s
+			     | [\s;]unless\s
+			     | [\s;]when\s
+			     | [\s;]assert_match\s
+			     | [\s;]or\s			# boolean opperators
+			     | [\s;]and\s
+			     | [\s;]not\s
+			     | [\s.]index\s			# methods
+			     | [\s.]scan\s
+			     | [\s.]sub\s
+			     | [\s.]sub!\s
+			     | [\s.]gsub\s
+			     | [\s.]gsub!\s
+			     | [\s.]match\s
+			     )
+			   | (?<=                  # or a look-behind with line anchor:
+			        ^when\s            # duplication necessary due to limits of regex
+			      | ^if\s
+			      | ^elsif\s
+			      | ^while\s
+			      | ^unless\s
+			      )
+			   )
+			   \s*((/))(?![*+{}?])
+			`
+                (1 string.regexp.classic.ruby)
+                (2 punctuation.definition.string.ruby)))
+        (end
+            (regex [((/[eimnosux]*))]
+                (1 string.regexp.classic.ruby)
+                (2 punctuation.definition.string.ruby)))
+        (subzones
+            (include @regex_sub)))
+    (zone string.regexp.mod-r.ruby
+        (start
+            (regex [%r\{]
+                (0 punctuation.definition.string.begin.ruby)))
+        (end
+            (regex [\}[eimnosux]*]
+                (0 punctuation.definition.string.end.ruby)))
+        (subzones
+            (include @regex_sub)
+            (include @nest_curly_r)))
+    (zone string.regexp.mod-r.ruby
+        (start
+            (regex `%r\[`
+                (0 punctuation.definition.string.begin.ruby)))
+        (end
+            (regex `\][eimnosux]*`
+                (0 punctuation.definition.string.end.ruby)))
+        (subzones
+            (include @regex_sub)
+            (include @nest_brackets_r)))
+    (zone string.regexp.mod-r.ruby
+        (start
+            (regex [%r\(]
+                (0 punctuation.definition.string.begin.ruby)))
+        (end
+            (regex [\)[eimnosux]*]
+                (0 punctuation.definition.string.end.ruby)))
+        (subzones
+            (include @regex_sub)
+            (include @nest_parens_r)))
+    (zone string.regexp.mod-r.ruby
+        (start
+            (regex %r\<
+                (0 punctuation.definition.string.begin.ruby)))
+        (end
+            (regex [\>[eimnosux]*]
+                (0 punctuation.definition.string.end.ruby)))
+        (subzones
+            (include @regex_sub)
+            (include @nest_ltgt_r)))
+    (zone string.regexp.mod-r.ruby
+        (start
+            (regex [%r([^\w])]
+                (0 punctuation.definition.string.begin.ruby)))
+        (end
+            (regex [\1[eimnosux]*]
+                (0 punctuation.definition.string.end.ruby)))
+        (subzones
+            (include @regex_sub)))
+    (zone string.quoted.other.literal.upper.ruby
+        (start
+            (regex [%[QWSR]?\(]
+                (0 punctuation.definition.string.begin.ruby)))
+        (end
+            (regex [\)]
+                (0 punctuation.definition.string.end.ruby)))
+        (subzones
+            (include @interpolated_ruby)
+            (include @escaped_char)
+            (include @nest_parens_i)))
+    (zone string.quoted.other.literal.upper.ruby
+        (start
+            (regex `%[QWSR]?\[`
+                (0 punctuation.definition.string.begin.ruby)))
+        (end
+            (regex `\]`
+                (0 punctuation.definition.string.end.ruby)))
+        (subzones
+            (include @interpolated_ruby)
+            (include @escaped_char)
+            (include @nest_brackets_i)))
+    (zone string.quoted.other.literal.upper.ruby
+        (start
+            (regex [%[QWSR]?\<]
+                (0 punctuation.definition.string.begin.ruby)))
+        (end
+            (regex \>
+                (0 punctuation.definition.string.end.ruby)))
+        (subzones
+            (include @interpolated_ruby)
+            (include @escaped_char)
+            (include @nest_ltgt_i)))
+    (zone string.quoted.double.ruby.mod
+        (start
+            (regex [%[QWSR]?\{]
+                (0 punctuation.definition.string.begin.ruby)))
+        (end
+            (regex [\}]
+                (0 punctuation.definition.string.end.ruby)))
+        (subzones
+            (include @interpolated_ruby)
+            (include @escaped_char)
+            (include @nest_curly_i)))
+    (zone string.quoted.other.literal.upper.ruby
+        (start
+            (regex [%[QWSR]([^\w])]
+                (0 punctuation.definition.string.begin.ruby)))
+        (end
+            (regex \1
+                (0 punctuation.definition.string.end.ruby)))
+        (subzones
+            (include @interpolated_ruby)
+            (include @escaped_char)))
+    (zone string.quoted.other.literal.other.ruby
+        (start
+            (regex [%([^\w\s=])]
+                (0 punctuation.definition.string.begin.ruby)))
+        (end
+            (regex \1
+                (0 punctuation.definition.string.end.ruby)))
+        (subzones
+            (include @interpolated_ruby)
+            (include @escaped_char)))
+    (zone string.quoted.other.literal.lower.ruby
+        (start
+            (regex [%[qws]\(]
+                (0 punctuation.definition.string.begin.ruby)))
+        (end
+            (regex [\)]
+                (0 punctuation.definition.string.end.ruby)))
+        (subzones
+            (zone constant.character.escape.ruby
+                (match
+                    (regex [\\\)|\\\\])))
+            (include @nest_parens)))
+    (zone string.quoted.other.literal.lower.ruby
+        (start
+            (regex [%[qws]\<]
+                (0 punctuation.definition.string.begin.ruby)))
+        (end
+            (regex \>
+                (0 punctuation.definition.string.end.ruby)))
+        (subzones
+            (zone constant.character.escape.ruby
+                (match
+                    (regex \\\>|\\\\)))
+            (include @nest_ltgt)))
+    (zone string.quoted.other.literal.lower.ruby
+        (start
+            (regex `%[qws]\[`
+                (0 punctuation.definition.string.begin.ruby)))
+        (end
+            (regex `\]`
+                (0 punctuation.definition.string.end.ruby)))
+        (subzones
+            (zone constant.character.escape.ruby
+                (match
+                    (regex `\\\]|\\\\`)))
+            (include @nest_brackets)))
+    (zone string.quoted.other.literal.lower.ruby
+        (start
+            (regex [%[qws]\{]
+                (0 punctuation.definition.string.begin.ruby)))
+        (end
+            (regex [\}]
+                (0 punctuation.definition.string.end.ruby)))
+        (subzones
+            (zone constant.character.escape.ruby
+                (match
+                    (regex [\\\}|\\\\])))
+            (include @nest_curly)))
+    (zone string.quoted.other.literal.lower.ruby
+        (start
+            (regex [%[qws]([^\w])]
+                (0 punctuation.definition.string.begin.ruby)))
+        (end
+            (regex \1
+                (0 punctuation.definition.string.end.ruby)))
+        (subzones
+            (zone
+                (match
+                    (regex \\.)))))
+    (zone constant.other.symbol.ruby
+        (match
+            (regex [(?<!:)(:)(?>[a-zA-Z_]\w*(?>[?!]|=(?![>=]))?|===?|>[>=]?|<[<=]?|<=>|[%&`/\|]|\*\*?|=?~|[-+]@?|\[\]=?|@@?[a-zA-Z_]\w*)]
+                (1 punctuation.definition.constant.ruby))))
+    (zone constant.other.symbol.ruby.19syntax
+        (match
+            (regex [(?>[a-zA-Z_]\w*(?>[?!])?)(:)(?!:)]
+                (1 punctuation.definition.constant.ruby))))
+    (zone comment.block.documentation.ruby
+        (start
+            (regex ^=begin
+                (0 punctuation.definition.comment.ruby)))
+        (end
+            (regex ^=end
+                (0 punctuation.definition.comment.ruby))))
+    (zone comment.line.number-sign.ruby
+        (match
+            (regex [(?:^[ \t]+)?(#).*$\n?]
+                (1 punctuation.definition.comment.ruby))))
+    (zone constant.numeric.ruby
+        (match
+            (regex [(?<!\w)\?(\\(x\h{1,2}(?!\h)\b|0[0-7]{0,2}(?![0-7])\b|[^x0MC])|(\\[MC]-)+\w|[^\s\\])])))
+    (zone
+        (inner-identifier text.plain)
+        (start
+            (regex ^__END__\n
+                (0 string.unquoted.program-block.ruby)))
+        (end
+            (regex [(?=not)impossible]
+                (0 string.unquoted.program-block.ruby)))
+        (subzones
+            (zone text.html.embedded.ruby
+                (start
+                    (regex [(?=<?xml|<(?i:html\b)|!DOCTYPE (?i:html\b))]))
+                (end
+                    (regex [(?=not)impossible]))
+                (subzones
+                    (include text.html.basic)))))
+    (zone string.unquoted.embedded.html.ruby
+        (start
+            (regex [(?><<-("?)((?:[_\w]+_|)HTML)\b\1)]
+                (0 punctuation.definition.string.begin.ruby)))
+        (end
+            (regex \s*\2$
+                (0 punctuation.definition.string.end.ruby)))
+        (subzones
+            (include @heredoc)
+            (include text.html.basic)
+            (include @interpolated_ruby)
+            (include @escaped_char)))
+    (zone string.unquoted.embedded.sql.ruby
+        (start
+            (regex [(?><<-("?)((?:[_\w]+_|)SQL)\b\1)]
+                (0 punctuation.definition.string.begin.ruby)))
+        (end
+            (regex \s*\2$
+                (0 punctuation.definition.string.end.ruby)))
+        (subzones
+            (include @heredoc)
+            (include source.sql)
+            (include @interpolated_ruby)
+            (include @escaped_char)))
+    (zone string.unquoted.embedded.css.ruby
+        (start
+            (regex [(?><<-("?)((?:[_\w]+_|)CSS)\b\1)]
+                (0 punctuation.definition.string.begin.ruby)))
+        (end
+            (regex \s*\2$
+                (0 punctuation.definition.string.end.ruby)))
+        (subzones
+            (include @heredoc)
+            (include source.css)
+            (include @interpolated_ruby)
+            (include @escaped_char)))
+    (zone string.unquoted.embedded.cplusplus.ruby
+        (start
+            (regex [(?><<-("?)((?:[_\w]+_|)CPP)\b\1)]
+                (0 punctuation.definition.string.begin.ruby)))
+        (end
+            (regex \s*\2$
+                (0 punctuation.definition.string.end.ruby)))
+        (subzones
+            (include @heredoc)
+            (include source.c++)
+            (include @interpolated_ruby)
+            (include @escaped_char)))
+    (zone string.unquoted.embedded.c.ruby
+        (start
+            (regex [(?><<-("?)((?:[_\w]+_|)C)\b\1)]
+                (0 punctuation.definition.string.begin.ruby)))
+        (end
+            (regex \s*\2$
+                (0 punctuation.definition.string.end.ruby)))
+        (subzones
+            (include @heredoc)
+            (include source.c)
+            (include @interpolated_ruby)
+            (include @escaped_char)))
+    (zone string.unquoted.embedded.js.ruby
+        (start
+            (regex [(?><<-("?)((?:[_\w]+_|)(?:JS|JAVASCRIPT))\b\1)]
+                (0 punctuation.definition.string.begin.ruby)))
+        (end
+            (regex \s*\2$
+                (0 punctuation.definition.string.end.ruby)))
+        (subzones
+            (include @heredoc)
+            (include source.js)
+            (include @interpolated_ruby)
+            (include @escaped_char)))
+    (zone string.unquoted.embedded.js.jquery.ruby
+        (start
+            (regex [(?><<-("?)((?:[_\w]+_|)JQUERY)\b\1)]
+                (0 punctuation.definition.string.begin.ruby)))
+        (end
+            (regex \s*\2$
+                (0 punctuation.definition.string.end.ruby)))
+        (subzones
+            (include @heredoc)
+            (include source.js.jquery)
+            (include @interpolated_ruby)
+            (include @escaped_char)))
+    (zone string.unquoted.embedded.shell.ruby
+        (start
+            (regex [(?><<-("?)((?:[_\w]+_|)(?:SH|SHELL))\b\1)]
+                (0 punctuation.definition.string.begin.ruby)))
+        (end
+            (regex \s*\2$
+                (0 punctuation.definition.string.end.ruby)))
+        (subzones
+            (include @heredoc)
+            (include source.shell)
+            (include @interpolated_ruby)
+            (include @escaped_char)))
+    (zone string.unquoted.embedded.ruby.ruby
+        (start
+            (regex [(?><<-("?)((?:[_\w]+_|)RUBY)\b\1)]
+                (0 punctuation.definition.string.begin.ruby)))
+        (end
+            (regex \s*\2$
+                (0 punctuation.definition.string.end.ruby)))
+        (subzones
+            (include @heredoc)
+            (include source.ruby)
+            (include @interpolated_ruby)
+            (include @escaped_char)))
+    (zone string.unquoted.heredoc.ruby
+        (start
+            (regex [(?>\=\s*<<(\w+))]
+                (0 punctuation.definition.string.begin.ruby)))
+        (end
+            (regex ^\1$
+                (0 punctuation.definition.string.end.ruby)))
+        (subzones
+            (include @heredoc)
+            (include @interpolated_ruby)
+            (include @escaped_char)))
+    (zone string.unquoted.heredoc.ruby
+        (start
+            (regex [(?><<-(\w+))]
+                (0 punctuation.definition.string.begin.ruby)))
+        (end
+            (regex \s*\1$
+                (0 punctuation.definition.string.end.ruby)))
+        (subzones
+            (include @heredoc)
+            (include @interpolated_ruby)
+            (include @escaped_char)))
+    (zone
+        (start
+            (regex [(?<=\{|do|\{\s|do\s)(\|)]
+                (1 punctuation.separator.variable.ruby)))
+        (end
+            (regex [(\|)]
+                (1 punctuation.separator.variable.ruby)))
+        (subzones
+            (zone variable.other.block.ruby
+                (match
+                    (regex [[_a-zA-Z][_a-zA-Z0-9]*])))
+            (zone punctuation.separator.variable.ruby
+                (match ,))))
+    (zone punctuation.separator.key-value
+        (match =>))
+    (zone keyword.operator.assignment.augmented.ruby
+        (match
+            (regex [<<=|%=|&=|\*=|\*\*=|\+=|\-=|\^=|\|{1,2}=|<<])))
+    (zone keyword.operator.comparison.ruby
+        (match
+            (regex [<=>|<(?!<|=)|>(?!<|=|>)|<=|>=|===|==|=~|!=|!~|(?<=[ \t])\?])))
+    (zone keyword.operator.logical.ruby
+        (match
+            (regex [(?<=[ \t])!+|\bnot\b|&&|\band\b|\|\||\bor\b|\^])))
+    (zone keyword.operator.arithmetic.ruby
+        (match
+            (regex [(%|&|\*\*|\*|\+|\-|/)])))
+    (zone keyword.operator.assignment.ruby
+        (match =))
+    (zone keyword.operator.other.ruby
+        (match
+            (regex \||~|>>)))
+    (zone punctuation.separator.other.ruby
+        (match :))
+    (zone punctuation.separator.statement.ruby
+        (match
+            (regex \;)))
+    (zone punctuation.separator.object.ruby
+        (match ,))
+    (zone punctuation.separator.method.ruby
+        (match
+            (regex \.|::)))
+    (zone punctuation.section.scope.ruby
+        (match
+            (regex [\{|\}])))
+    (zone punctuation.section.array.ruby
+        (match
+            (regex [\[|\]])))
+    (zone punctuation.section.function.ruby
+        (match
+            (regex [\(|\)]))))
+
+(collection nest_curly_r
+    (zone
+        (start
+            (regex [\{]
+                (0 punctuation.section.scope.ruby)))
+        (end
+            (regex [\}]
+                (0 punctuation.section.scope.ruby)))
+        (subzones
+            (include @regex_sub)
+            (include @nest_curly_r))))
+
+(collection nest_ltgt_r
+    (zone
+        (start
+            (regex \<
+                (0 punctuation.section.scope.ruby)))
+        (end
+            (regex \>
+                (0 punctuation.section.scope.ruby)))
+        (subzones
+            (include @regex_sub)
+            (include @nest_ltgt_r))))
+
+(collection regex_sub
+    (include @interpolated_ruby)
+    (include @escaped_char)
+    (zone string.regexp.arbitrary-repitition.ruby
+        (match
+            (regex [(\{)\d+(,\d+)?(\})]
+                (3 punctuation.definition.arbitrary-repitition.ruby)
+                (1 punctuation.definition.arbitrary-repitition.ruby))))
+    (zone string.regexp.character-class.ruby
+        (start
+            (regex [\[(?:\^?\])?]
+                (0 punctuation.definition.character-class.ruby)))
+        (end
+            (regex `\]`
+                (0 punctuation.definition.character-class.ruby)))
+        (subzones
+            (include @escaped_char)))
+    (zone string.regexp.group.ruby
+        (start
+            (regex [\(]
+                (0 punctuation.definition.group.ruby)))
+        (end
+            (regex [\)]
+                (0 punctuation.definition.group.ruby)))
+        (subzones
+            (include @regex_sub)))
+    (zone comment.line.number-sign.ruby
+        (match
+            (regex [(?<=^|\s)(#)\s[[a-zA-Z0-9,. \t?!-][^\x{00}-\x{7F}]]*$]
+                (1 punctuation.definition.comment.ruby)))))
+
+(collection nest_ltgt_i
+    (zone
+        (start
+            (regex \<
+                (0 punctuation.section.scope.ruby)))
+        (end
+            (regex \>
+                (0 punctuation.section.scope.ruby)))
+        (subzones
+            (include @interpolated_ruby)
+            (include @escaped_char)
+            (include @nest_ltgt_i))))
+
+(collection nest_brackets_r
+    (zone
+        (start
+            (regex `\[`
+                (0 punctuation.section.scope.ruby)))
+        (end
+            (regex `\]`
+                (0 punctuation.section.scope.ruby)))
+        (subzones
+            (include @regex_sub)
+            (include @nest_brackets_r))))
+
+(collection nest_brackets
+    (zone
+        (start
+            (regex `\[`
+                (0 punctuation.section.scope.ruby)))
+        (end
+            (regex `\]`
+                (0 punctuation.section.scope.ruby)))
+        (subzones
+            (include @nest_brackets))))
+
+(collection escaped_char
+    (zone constant.character.escape.ruby
+        (match
+            (regex [\\(?:[0-7]{1,3}|x[\da-fA-F]{1,2}|.)]))))
+
+(collection heredoc
+    (zone
+        (start
+            (regex ^<<-?\w+))
+        (end
+            (regex $))
+        (subzones
+            (include $self))))
+
+(collection nest_curly
+    (zone
+        (start
+            (regex [\{]
+                (0 punctuation.section.scope.ruby)))
+        (end
+            (regex [\}]
+                (0 punctuation.section.scope.ruby)))
+        (subzones
+            (include @nest_curly))))
+
+(collection nest_ltgt
+    (zone
+        (start
+            (regex \<
+                (0 punctuation.section.scope.ruby)))
+        (end
+            (regex \>
+                (0 punctuation.section.scope.ruby)))
+        (subzones
+            (include @nest_ltgt))))
+
+(collection nest_brackets_i
+    (zone
+        (start
+            (regex `\[`
+                (0 punctuation.section.scope.ruby)))
+        (end
+            (regex `\]`
+                (0 punctuation.section.scope.ruby)))
+        (subzones
+            (include @interpolated_ruby)
+            (include @escaped_char)
+            (include @nest_brackets_i))))
+
+(collection nest_parens_r
+    (zone
+        (start
+            (regex [\(]
+                (0 punctuation.section.scope.ruby)))
+        (end
+            (regex [\)]
+                (0 punctuation.section.scope.ruby)))
+        (subzones
+            (include @regex_sub)
+            (include @nest_parens_r))))
+
+(collection nest_curly_i
+    (zone
+        (start
+            (regex [\{]
+                (0 punctuation.section.scope.ruby)))
+        (end
+            (regex [\}]
+                (0 punctuation.section.scope.ruby)))
+        (subzones
+            (include @interpolated_ruby)
+            (include @escaped_char)
+            (include @nest_curly_i))))
+
+(collection nest_parens
+    (zone
+        (start
+            (regex [\(]
+                (0 punctuation.section.scope.ruby)))
+        (end
+            (regex [\)]
+                (0 punctuation.section.scope.ruby)))
+        (subzones
+            (include @nest_parens))))
+
+(collection nest_parens_i
+    (zone
+        (start
+            (regex [\(]
+                (0 punctuation.section.scope.ruby)))
+        (end
+            (regex [\)]
+                (0 punctuation.section.scope.ruby)))
+        (subzones
+            (include @interpolated_ruby)
+            (include @escaped_char)
+            (include @nest_parens_i))))
+
+(collection interpolated_ruby
+    (zone source.ruby.embedded.source
+        (match
+            (regex [#\{(\})]
+                (0 punctuation.section.embedded.ruby)
+                (1 source.ruby.embedded.source.empty))))
+    (zone source.ruby.embedded.source
+        (start
+            (regex [#\{]
+                (0 punctuation.section.embedded.ruby)))
+        (end
+            (regex [\}]
+                (0 punctuation.section.embedded.ruby)))
+        (subzones
+            (include @nest_curly_and_self)
+            (include $self)))
+    (zone variable.other.readwrite.instance.ruby
+        (match
+            (regex [(#@)[a-zA-Z_]\w*]
+                (1 punctuation.definition.variable.ruby))))
+    (zone variable.other.readwrite.class.ruby
+        (match
+            (regex [(#@@)[a-zA-Z_]\w*]
+                (1 punctuation.definition.variable.ruby))))
+    (zone variable.other.readwrite.global.ruby
+        (match
+            (regex [(#\$)[a-zA-Z_]\w*]
+                (1 punctuation.definition.variable.ruby)))))
+
+(collection nest_curly_and_self
+    (zone
+        (start
+            (regex [\{]
+                (0 punctuation.section.scope.ruby)))
+        (end
+            (regex [\}]
+                (0 punctuation.section.scope.ruby)))
+        (subzones
+            (include @nest_curly_and_self)))
+    (include $self))

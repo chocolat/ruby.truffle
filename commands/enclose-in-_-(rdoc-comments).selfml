@@ -1,0 +1,23 @@
+(trigger
+    (key [[cmd]I]))
+
+(name Italic)
+
+(only-in [source.ruby comment])
+
+(input selection word)
+
+(output snippet)
+
+(save nothing)
+
+(script [#!/usr/bin/env ruby
+s = STDIN.read
+case s
+when /^\w+$/
+  print "_#{s}_$0"
+when ""
+  print "_$1_$0"
+else
+  print "<em>#{s}</em>"
+end])

@@ -1,0 +1,11 @@
+(name [case … end])
+
+(trigger
+    (tab case))
+
+(only-in source.ruby)
+
+(snippet [case %{1="object"}
+when %{2="condition"}
+	%{0}
+end])

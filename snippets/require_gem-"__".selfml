@@ -1,0 +1,8 @@
+(name [require_gem ".."])
+
+(trigger
+    (tab reqg-))
+
+(only-in source.ruby)
+
+(snippet [require "%{0}"])

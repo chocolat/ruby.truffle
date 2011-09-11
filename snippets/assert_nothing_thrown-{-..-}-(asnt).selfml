@@ -1,0 +1,8 @@
+(name [assert_nothing_thrown { .. }])
+
+(trigger
+    (tab asnt))
+
+(only-in source.ruby)
+
+(snippet [assert_nothing_thrown { %{0} }])

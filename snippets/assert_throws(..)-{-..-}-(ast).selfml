@@ -1,0 +1,8 @@
+(name [assert_throws(..) { .. }])
+
+(trigger
+    (tab ast))
+
+(only-in source.ruby)
+
+(snippet [assert_throws(:%{1="expected"}) { %{0} }])

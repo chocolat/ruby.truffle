@@ -1,0 +1,19 @@
+(trigger
+    (key [[cmd]R]))
+
+(name Run)
+
+(only-in source.ruby)
+
+(input document)
+
+(output html)
+
+(save nothing)
+
+(script [#!/bin/sh
+
+export RUBYLIB="$TM_BUNDLE_SUPPORT/RubyMate${RUBYLIB:+:$RUBYLIB}"
+
+/usr/bin/env ruby -KU -- "$TM_BUNDLE_SUPPORT/RubyMate/run_script.rb"
+])

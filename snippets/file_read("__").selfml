@@ -1,0 +1,8 @@
+(name [File.read("..")])
+
+(trigger
+    (tab File))
+
+(only-in source.ruby)
+
+(snippet [File.read(%{1=""%{2="path/to/file"}""})])

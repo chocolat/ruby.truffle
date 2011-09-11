@@ -1,0 +1,8 @@
+(name [YAML.dump(.., file)])
+
+(trigger
+    (tab Yd-))
+
+(only-in source.ruby)
+
+(snippet [File.open(%{1=""%{2="path/to/file"}.yaml""}, "w") { |%{3="file"}| YAML.dump(%{4="obj"}, %{3="file"}) }])

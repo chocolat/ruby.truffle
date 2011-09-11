@@ -1,0 +1,8 @@
+(name [deep_copy(..)])
+
+(trigger
+    (tab deec))
+
+(only-in source.ruby)
+
+(snippet [Marshal.load(Marshal.dump(%{0="obj_to_copy"}))])

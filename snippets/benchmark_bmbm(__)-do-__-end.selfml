@@ -1,0 +1,11 @@
+(name [Benchmark.bmbm do .. end])
+
+(trigger
+    (tab bm-))
+
+(only-in source.ruby)
+
+(snippet [TESTS = %{1="10_000"}
+Benchmark.bmbm do |results|
+  %{0}
+end])

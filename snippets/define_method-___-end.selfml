@@ -1,0 +1,10 @@
+(name [define_method ... end])
+
+(trigger
+    (tab defm))
+
+(only-in source.ruby)
+
+(snippet [define_method :%{1="method_name"} do%{2/.+/ |/}%{2="args"}%{2/.+/|/}
+  %{0}
+end])

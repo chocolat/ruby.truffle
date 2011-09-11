@@ -1,0 +1,10 @@
+(name [def test_ .. end])
+
+(trigger
+    (tab deft))
+
+(only-in source.ruby)
+
+(snippet [def test_%{1="case_name"}
+	%{0}
+end])

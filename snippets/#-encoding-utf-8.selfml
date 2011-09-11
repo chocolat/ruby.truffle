@@ -1,0 +1,9 @@
+(name [# encoding: UTF-8])
+
+(trigger
+    (tab utf8))
+
+(only-in source.ruby)
+
+(snippet [# encoding: %{1="UTF-8"}
+])

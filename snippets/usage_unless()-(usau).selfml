@@ -1,0 +1,10 @@
+(name [usage_unless()])
+
+(trigger
+    (tab usau))
+
+(only-in source.ruby)
+
+(snippet [unless ARGV.%{1}
+	abort "Usage:  #{$PROGRAM_NAME} %{2="ARGS_GO_HERE"}"
+end])

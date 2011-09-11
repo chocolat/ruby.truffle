@@ -1,0 +1,8 @@
+(name [grep(/pattern/) { |match| .. }])
+
+(trigger
+    (tab gre))
+
+(only-in source.ruby)
+
+(snippet [grep(%{1="/%{2="pattern"}/"}) { |%{3="match"}| %{0} }])

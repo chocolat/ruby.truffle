@@ -1,0 +1,10 @@
+(name [def initialize .. end])
+
+(trigger
+    (tab defi))
+
+(only-in source.ruby)
+
+(snippet [def initialize%{1/.+/(/}%{1="args"}%{1/.+/)/}
+  %{0}
+end])

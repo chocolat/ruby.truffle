@@ -1,0 +1,8 @@
+(name [scan(/../) { |match| .. }])
+
+(trigger
+    (tab sca))
+
+(only-in source.ruby)
+
+(snippet [scan(/%{1="pattern"}/) { |%{2="match"}| %{0} }])

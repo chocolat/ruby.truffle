@@ -1,0 +1,8 @@
+(name [each_line { |line| .. }])
+
+(trigger
+    (tab eal))
+
+(only-in source.ruby)
+
+(snippet [each_line%{1} { |%{2="line"}| %{0} }])

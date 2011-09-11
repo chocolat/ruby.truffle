@@ -1,0 +1,8 @@
+(name [Insert ERb’s <% .. %> or <%= .. %>])
+
+(trigger
+    (key [[ctrl][shift]>]))
+
+(only-in [text.html, source.yaml, meta.erb])
+
+(snippet [<%= %{0="%{TM_SELECTED_TEXT}"} %>])

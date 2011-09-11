@@ -1,0 +1,8 @@
+(name [Dir[".."]])
+
+(trigger
+    (tab Dir))
+
+(only-in source.ruby)
+
+(snippet [Dir[%{1=""%{2="glob/**/*.rb"}""}]])

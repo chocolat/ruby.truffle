@@ -1,0 +1,10 @@
+(name [if … end])
+
+(trigger
+    (tab if))
+
+(only-in source.ruby)
+
+(snippet [if %{1="condition"}
+	%{0}
+end])

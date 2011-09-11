@@ -1,0 +1,8 @@
+(name [assert_no_match(..)])
+
+(trigger
+    (tab asnm))
+
+(only-in source.ruby)
+
+(snippet [assert_no_match`snippet_paren.rb`/%{1="unexpected_pattern"}/, %{0="actual_string"}`snippet_paren.rb end`])

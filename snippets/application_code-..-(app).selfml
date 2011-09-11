@@ -1,0 +1,10 @@
+(name [application { .. }])
+
+(trigger
+    (tab app))
+
+(only-in source.ruby)
+
+(snippet [if __FILE__ == $PROGRAM_NAME
+	%{0}
+end])

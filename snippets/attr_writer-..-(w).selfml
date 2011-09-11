@@ -1,0 +1,8 @@
+(name [attr_writer ..])
+
+(trigger
+    (tab w))
+
+(only-in source.ruby)
+
+(snippet [attr_writer :%{0="attr_names"}])

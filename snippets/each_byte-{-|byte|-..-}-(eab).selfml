@@ -1,0 +1,8 @@
+(name [each_byte { |byte| .. }])
+
+(trigger
+    (tab eab))
+
+(only-in source.ruby)
+
+(snippet [each_byte { |%{1="byte"}| %{0} }])

@@ -1,0 +1,8 @@
+(name [Embedded Code — #{…}])
+
+(trigger
+    (key [[shift]#]))
+
+(only-in [(string.quoted.double.ruby|string.interpolated.ruby) - string source])
+
+(snippet [#{%{1="%{TM_SELECTED_TEXT}"}}])

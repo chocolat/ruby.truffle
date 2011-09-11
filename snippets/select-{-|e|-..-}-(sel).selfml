@@ -1,0 +1,8 @@
+(name [select { |e| .. }])
+
+(trigger
+    (tab sel))
+
+(only-in source.ruby)
+
+(snippet [select { |%{1="e"}| %{0} }])

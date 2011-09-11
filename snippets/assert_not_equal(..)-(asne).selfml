@@ -1,0 +1,8 @@
+(name [assert_not_equal(..)])
+
+(trigger
+    (tab asne))
+
+(only-in source.ruby)
+
+(snippet [assert_not_equal`snippet_paren.rb`%{1="unexpected"}, %{0="actual"}`snippet_paren.rb end`])

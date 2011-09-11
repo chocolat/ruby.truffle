@@ -1,0 +1,8 @@
+(name [Dir.glob("..") { |file| .. }])
+
+(trigger
+    (tab Dir))
+
+(only-in source.ruby)
+
+(snippet [Dir.glob(%{1=""%{2="dir/glob/*"}""}) { |%{3="file"}| %{0} }])

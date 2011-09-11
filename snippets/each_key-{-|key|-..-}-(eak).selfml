@@ -1,0 +1,8 @@
+(name [each_key { |key| .. }])
+
+(trigger
+    (tab eak))
+
+(only-in source.ruby)
+
+(snippet [each_key { |%{1="key"}| %{0} }])

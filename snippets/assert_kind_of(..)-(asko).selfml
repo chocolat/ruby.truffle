@@ -1,0 +1,8 @@
+(name [assert_kind_of(..)])
+
+(trigger
+    (tab asko))
+
+(only-in source.ruby)
+
+(snippet [assert_kind_of`snippet_paren.rb`%{1="ExpectedKind"}, %{0="actual_instance"}`snippet_paren.rb end`])

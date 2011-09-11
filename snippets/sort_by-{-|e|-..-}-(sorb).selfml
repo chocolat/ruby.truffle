@@ -1,0 +1,8 @@
+(name [sort_by { |e| .. }])
+
+(trigger
+    (tab sorb))
+
+(only-in source.ruby)
+
+(snippet [sort_by { |%{1="e"}| %{0} }])

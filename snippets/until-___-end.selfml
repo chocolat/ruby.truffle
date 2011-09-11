@@ -1,0 +1,10 @@
+(name [until ... end])
+
+(trigger
+    (tab until))
+
+(only-in source.ruby)
+
+(snippet [until %{1="condition"}
+	%{0}
+end])

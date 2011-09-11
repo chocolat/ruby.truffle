@@ -1,0 +1,10 @@
+(name [def … end])
+
+(trigger
+    (tab def))
+
+(only-in source.ruby)
+
+(snippet [def %{1="method_name"}
+	%{0}
+end])

@@ -1,0 +1,8 @@
+(name [min { |a, b| .. }])
+
+(trigger
+    (tab min))
+
+(only-in source.ruby)
+
+(snippet [min { |a, b| %{0} }])

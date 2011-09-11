@@ -1,0 +1,10 @@
+(name [namespace :.. do .. end])
+
+(trigger
+    (tab nam))
+
+(only-in source.ruby)
+
+(snippet [namespace :%{1="%{TM_FILENAME}"} do
+	%{0}
+end])

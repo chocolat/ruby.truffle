@@ -1,0 +1,8 @@
+(name [each_value { |val| .. }])
+
+(trigger
+    (tab eav))
+
+(only-in source.ruby)
+
+(snippet [each_value { |%{1="val"}| %{0} }])

@@ -1,0 +1,10 @@
+(name [unix_filter { .. }])
+
+(trigger
+    (tab unif))
+
+(only-in source.ruby)
+
+(snippet [ARGF.each_line%{1} do |%{2="line"}|
+	%{0}
+end])

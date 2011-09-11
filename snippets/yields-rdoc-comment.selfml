@@ -1,0 +1,8 @@
+(name :yields:)
+
+(trigger
+    (tab y))
+
+(only-in [source.ruby comment])
+
+(snippet [ :yields: %{0="arguments"}])

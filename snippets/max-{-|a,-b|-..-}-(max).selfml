@@ -1,0 +1,8 @@
+(name [max { |a, b| .. }])
+
+(trigger
+    (tab max))
+
+(only-in source.ruby)
+
+(snippet [max { |a, b| %{0} }])

@@ -1,0 +1,21 @@
+(trigger
+    (key [[ctrl][shift][cmd]O]))
+
+(name Omit)
+
+(only-in source.ruby)
+
+(input selection line)
+
+(output snippet)
+
+(save nothing)
+
+(script [#!/usr/bin/env ruby
+s = STDIN.read
+puts "\#--"
+if s== ""
+  puts "\# $0","\#++"
+else
+  puts s, "\#++", "$0"
+end])

@@ -1,0 +1,58 @@
+(menu command.run
+    command.run-focused-unit-test
+    ---
+    command.lookup-in-documentation
+    (submenu RDoc
+        command.show-rdoc-for-this-file
+        ---
+        (submenu Format [command.enclose-in-*-(rdoc-comments)] [command.enclose-in-_-(rdoc-comments)] [command.enclose-in-+-(rdoc-comments)])
+        snippet.rdoc-documentation-block
+        command.omit-from-rdoc
+        ---
+        snippet.yields-rdoc-comment)
+    ---
+    command.execute-line-with-ruby
+    [snippet.add-'#-=>'-marker]
+    ---
+    command.insert-missing-requires
+    command.make-destructive-call
+    command.toggle-string-symbol
+    snippet.insert-erb's-<%-__-%>-or-<%=-__-%>
+    ---
+    (submenu Declarations
+        snippet.wrap-in-begin-…-rescue-…-end
+        snippet.080-ruby-case
+        snippet.when
+        snippet.def-end
+        snippet.070-ruby-if
+        snippet.060-ruby-if-else
+        snippet.elsif-___
+        [snippet.unless-(unless)]
+        snippet.while-___-end
+        snippet.until-___-end
+        ---
+        (submenu [Classes and Modules] [snippet.class-..-end-(cla)] snippet.class-..-initialize-..-end snippet.class-..-<-parentclass-..-initialize-..-end snippet.class-..-<-struct-..-initialize-..-end [snippet.class-..-instance_methods-..-undef-..-initialize-..-end-(class)] [snippet.class-..-<-delegateclass-..-initialize-..-end-(class)] snippet.class-<<-self-__-end --- snippet.module-..-end snippet.module-..-module_function-..-end snippet.module-..-classmethods-..-end)
+        (submenu Methods [snippet.attr_reader-..-(r)] [snippet.attr_writer-..-(w)] [snippet.attr_accessor-..-(rw)] --- [snippet.include-enumerable-..-(enum)] [snippet.include-comparable-..-(comp)] --- [snippet.extend-forwardable-(forw)] --- [snippet.def-self-..-end-(defs)] snippet.def-initialize-__-end [snippet.def-method_missing-..-end-(mm)] [snippet.def_delegator-..-(defd)] [snippet.def_delegators-..-(defds)] --- [snippet.alias_method-..-(am)] --- snippet.define_method-___-end)
+        snippet.__end__
+        ---
+        [snippet.#!;usr;local;bin;ruby--w]
+        [snippet.#-encoding-utf-8]
+        [snippet.require-".."-(req)]
+        snippet.require_gem-"__"
+        [snippet.application_code-..-(app)]
+        [snippet.usage_if()-(usai)]
+        [snippet.usage_unless()-(usau)])
+    (submenu Iterators
+        (submenu Arrays [snippet.array.new(10)-{-|i|-..-}-(arr)] --- [snippet.delete_if-{-|e|-..-}-(deli)] [snippet.fill(range)-{-|i|-..-}-(fil)] [snippet.flatten_once-(fla)] [snippet.zip(enums)-{-|row|-..-}-(zip)])
+        (submenu Counting [snippet.downto(0)-{-|n|-..-}-(dow)] [snippet.step(2)-{-|e|-..-}-(ste)] [snippet.times-{-|n|-..-}-(tim)] [snippet.upto(1.0;0.0)-{-|n|-..-}-(upt)] --- [snippet.loop-{-__-}])
+        (submenu [Each Element] [snippet.each-{-|e|-..-}-(ea)] [snippet.each_byte-{-|byte|-..-}-(eab)] [snippet.each_char-{-|chr|-..-}-(eac-)] [snippet.each_cons(..)-{-|group|-..-}-(eac-)] [snippet.each_index-{-|i|-..-}-(eai)] [snippet.each_key-{-|key|-..-}-(eak)] [snippet.each_line-{-|line|-..-}-(eal)] [snippet.each_pair-{-|name,-val|-..-}-(eap)] [snippet.each_slice-{-|group|-..-}-(eas)] [snippet.each_value-{-|val|-..-}-(eav)] [snippet.each_with_index-{-|e,-i|-..-}-(eawi)] [snippet.reverse_each-{-|e|-..-}-(rea)] --- [snippet.inject(init)-{-|mem,-var|-..-}-(inj)] --- [snippet.map-{-|e|-..-}-(map)] [snippet.map_with_index-{-|e,-i|-..-}-(mapwi)])
+        (submenu Ordering [snippet.sort-{-|a,-b|-..-}-(sor)] [snippet.sort_by-{-|e|-..-}-(sorb)] --- [snippet.randomize-(ran)])
+        (submenu [Searching and Selection] [snippet.all?-{-|e|-..-}-(all)] [snippet.any?-{-|e|-..-}-(any)] [snippet.classify-{-|e|-..-}-(clas)] [snippet.collect-{-|e|-..-}-(col)] [snippet.detect-{-|e|-..-}-(det)] [snippet.fetch(name)-{-|key|-..-}-(fet)] [snippet.find-{-|e|-..-}-(fin)] [snippet.find_all-{-|e|-..-}-(fina)] [snippet.grep(;pattern;)-{-|match|-..-}-(gre)] [snippet.max-{-|a,-b|-..-}-(max)] [snippet.min-{-|a,-b|-..-}-(min)] [snippet.partition-{-|e|-..-}-(par)] [snippet.reject-{-|e|-..-}-(rej)] [snippet.select-{-|e|-..-}-(sel)])
+        (submenu Strings [snippet.sub(;..;)-{-|match|-..-}-(sub)] [snippet.gsub(;..;)-{-|match|-..-}-(gsu)] --- [snippet.scan(;..;)-{-|match|-..-}-(sca)]))
+    (submenu Blocks [snippet.open-yield-block-({)] [snippet.do-|obj|-..-end-(doo)] --- [snippet.lambda-{-|args|-..-}-(lam)])
+    (submenu Hashes [snippet.hash.new-{-|hash,-key|-hash[key]-=-..-}-(has)] --- [snippet.hash-pair-(-)] snippet.hash-pointer)
+    (submenu Files [snippet.open("path;or;url",-"w")-do-|doc|-..-end-(ope)] --- [snippet.file.foreach-("..")-do-|line|-..-end-(file)] [snippet.file_read("__")] [snippet.file_open("__")-{-|file|-__-}] --- [snippet.dir.glob("..")-do-|file|-..-end-(dir)] [snippet.dir["__"]] [snippet.directory()] [snippet.path_from_here(-__-)] --- [snippet.unix_filter-..-(uni)] [snippet.option_parse-{-..-}-(optp)] snippet.untitled)
+    (submenu Tests [snippet.class-..-<-test;;unit;;testcase-..-end-(tc)] [snippet.def-test_-..-end-(t)] [snippet.require-"tc_.."-..-(ts)] --- [snippet.assert(..)-(as)] snippet.assert_equal [snippet.assert_not_equal(..)-(asne)] [snippet.assert_in_delta(..)-(asid)] [snippet.assert_instance_of(..)-(asio)] [snippet.assert_kind_of(..)-(asko)] [snippet.assert_nil(..)-(asn)] [snippet.assert_not_nil(..)-(asnn)] [snippet.assert_match(..)-(asm)] [snippet.assert_no_match(..)-(asnm)] [snippet.assert_operator(..)-(aso)] [snippet.assert_raise(..)-{-..-}-(asr)] [snippet.assert_nothing_raised(..)-{-..-}-(asnr)] [snippet.assert_respond_to(..)-(asrt)] [snippet.assert_same(..)-(ass)] [snippet.assert_not_same(..)-(asns)] [snippet.assert_send(..)-(ass)] [snippet.assert_throws(..)-{-..-}-(ast)] [snippet.assert_nothing_thrown-{-..-}-(asnt)] [snippet.flunk(..)-(fl)] --- [snippet.benchmark_bmbm(__)-do-__-end] [snippet.results_report(__)-{-__-}])
+    (submenu Serialization [snippet.marshal.dump(obj,-file)-(md)] [snippet.marshal.load(obj)-(ml)] --- [snippet.pstore_new(-__-)] [snippet.transaction(-__-)-do-__-end] --- [snippet.yaml.dump(..,-file)-(yd-)] [snippet.yaml.load(file)-(yl-)] --- [snippet.xmlread(__)] [snippet.xpath(__)-{-__-}])
+    (submenu Idioms [snippet.class_from_name()-(clafn)] [snippet.deep_copy(..)-(dee)] [snippet.singleton_class()] [command.word_wrap()-(worw)])
+    (submenu Rake command.run-rake-task --- snippet.namespace-__-do-__-end [snippet.task-task_name-=>-[-dependent,-tasks]-do-__-end]))

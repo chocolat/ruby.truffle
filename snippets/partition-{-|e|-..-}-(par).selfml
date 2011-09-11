@@ -1,0 +1,8 @@
+(name [partition { |e| .. }])
+
+(trigger
+    (tab par))
+
+(only-in source.ruby)
+
+(snippet [partition { |%{1="e"}| %{0} }])

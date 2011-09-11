@@ -1,0 +1,9 @@
+(name [elsif ...])
+
+(trigger
+    (tab elsif))
+
+(only-in source.ruby)
+
+(snippet [elsif %{1="condition"}
+	%{0}])

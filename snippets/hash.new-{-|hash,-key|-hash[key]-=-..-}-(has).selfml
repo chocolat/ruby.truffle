@@ -1,0 +1,8 @@
+(name [Hash.new { |hash, key| hash[key] = .. }])
+
+(trigger
+    (tab Hash))
+
+(only-in source.ruby)
+
+(snippet [Hash.new { |%{1="hash"}, %{2="key"}| %{1="hash"}[%{2="key"}] = %{0} }])

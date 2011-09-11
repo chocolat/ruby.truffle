@@ -1,0 +1,8 @@
+(name [path_from_here( .. )])
+
+(trigger
+    (tab patfh))
+
+(only-in source.ruby)
+
+(snippet [File.join(File.dirname(__FILE__), *%w[%{1="rel path here"}])])

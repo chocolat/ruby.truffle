@@ -1,0 +1,23 @@
+(trigger
+    (tab worw))
+
+(name [word_wrap()])
+
+(only-in source.ruby)
+
+(input nothing)
+
+(output after-selected)
+
+(save nothing)
+
+(script [#!/usr/bin/env ruby
+$: << ENV['TM_SUPPORT_PATH'] + '/lib'
+require "ui"
+TextMate::UI.request_string(:title => "Wrap Size",
+                     :prompt => "Enter a character width:",
+                    :button1 => "Build Snippet") do |col|
+  col = col.to_i
+  print %Q{gsub!(/(.{1,#{col}}|\\S{#{col + 1},})(?: +|$\\n?)/, "\\\\1\\n")}
+end
+])

@@ -1,0 +1,8 @@
+(name [each_slice(..) { |group| .. }])
+
+(trigger
+    (tab eas-))
+
+(only-in source.ruby)
+
+(snippet [each_slice(%{1="2"}) { |%{2="group"}| %{0} }])

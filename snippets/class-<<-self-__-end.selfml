@@ -1,0 +1,10 @@
+(name [class << self .. end])
+
+(trigger
+    (tab cla))
+
+(only-in source.ruby)
+
+(snippet [class << %{1="self"}
+	%{0}
+end])

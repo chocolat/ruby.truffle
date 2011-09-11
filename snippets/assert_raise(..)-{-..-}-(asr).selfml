@@ -1,0 +1,8 @@
+(name [assert_raise(..) { .. }])
+
+(trigger
+    (tab asr))
+
+(only-in source.ruby)
+
+(snippet [assert_raise(%{1="Exception"}) { %{0} }])

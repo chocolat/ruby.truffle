@@ -1,0 +1,8 @@
+(name [attr_reader ..])
+
+(trigger
+    (tab r))
+
+(only-in source.ruby)
+
+(snippet [attr_reader :%{0="attr_names"}])

@@ -1,0 +1,8 @@
+(name [xmlread(..)])
+
+(trigger
+    (tab xml-))
+
+(only-in source.ruby)
+
+(snippet [REXML::Document.new(File.read(%{1=""%{2="path/to/file"}""}))])

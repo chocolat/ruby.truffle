@@ -1,0 +1,8 @@
+(name [downto(0) { |n| .. }])
+
+(trigger
+    (tab dow))
+
+(only-in source.ruby)
+
+(snippet [downto(%{1="0"}) { %{2/(^(?<var>\s*(?:\*|\*?[a-z_])[a-zA-Z0-9_]*\s*)(,\g<var>)*,?\s*$)|.*/(?1:|)/}%{2="n"}%{2/(^(?<var>\s*(?:\*|\*?[a-z_])[a-zA-Z0-9_]*\s*)(,\g<var>)*,?\s*$)|.*/(?1:| )/}%{0} }])

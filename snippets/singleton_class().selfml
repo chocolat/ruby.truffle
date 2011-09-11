@@ -1,0 +1,8 @@
+(name [singleton_class()])
+
+(trigger
+    (tab sinc))
+
+(only-in source.ruby)
+
+(snippet [class << self; self end])

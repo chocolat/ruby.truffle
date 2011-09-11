@@ -1,0 +1,10 @@
+(name [while ... end])
+
+(trigger
+    (tab while))
+
+(only-in source.ruby)
+
+(snippet [while %{1="condition"}
+	%{0}
+end])

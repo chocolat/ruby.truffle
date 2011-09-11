@@ -1,0 +1,8 @@
+(name [loop { .. }])
+
+(trigger
+    (tab loo))
+
+(only-in source.ruby)
+
+(snippet [loop { %{0} }])

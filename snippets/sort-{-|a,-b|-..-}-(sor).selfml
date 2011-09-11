@@ -1,0 +1,8 @@
+(name [sort { |a, b| .. }])
+
+(trigger
+    (tab sor))
+
+(only-in source.ruby)
+
+(snippet [sort { |a, b| %{0} }])

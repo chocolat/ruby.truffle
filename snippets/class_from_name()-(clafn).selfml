@@ -1,0 +1,8 @@
+(name [class_from_name()])
+
+(trigger
+    (tab clafn))
+
+(only-in source.ruby)
+
+(snippet [split("::").inject(Object) { |par, const| par.const_get(const) }])

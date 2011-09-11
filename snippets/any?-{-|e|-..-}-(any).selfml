@@ -1,0 +1,8 @@
+(name [any? { |e| .. }])
+
+(trigger
+    (tab any))
+
+(only-in source.ruby)
+
+(snippet [any? { |%{1="e"}| %{0} }])

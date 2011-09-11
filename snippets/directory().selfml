@@ -1,0 +1,8 @@
+(name [directory()])
+
+(trigger
+    (tab dir))
+
+(only-in source.ruby)
+
+(snippet [File.dirname(__FILE__)])

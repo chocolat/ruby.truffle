@@ -1,0 +1,8 @@
+(name [extend Forwardable])
+
+(trigger
+    (tab Forw-))
+
+(only-in source.ruby)
+
+(snippet [extend Forwardable])

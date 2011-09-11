@@ -1,0 +1,8 @@
+(name [each_char { |chr| .. }])
+
+(trigger
+    (tab eac-))
+
+(only-in source.ruby)
+
+(snippet [each_char { |%{1="chr"}| %{0} }])

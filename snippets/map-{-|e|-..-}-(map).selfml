@@ -1,0 +1,8 @@
+(name [map { |e| .. }])
+
+(trigger
+    (tab map))
+
+(only-in source.ruby)
+
+(snippet [map { |%{1="e"}| %{0} }])

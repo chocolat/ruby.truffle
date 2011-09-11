@@ -1,0 +1,12 @@
+(name [include Enumerable ..])
+
+(trigger
+    (tab Enum))
+
+(only-in source.ruby)
+
+(snippet [include Enumerable
+
+def each(&block)
+	%{0}
+end])

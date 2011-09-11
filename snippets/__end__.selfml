@@ -1,0 +1,9 @@
+(name __END__)
+
+(trigger
+    (tab end))
+
+(only-in source.ruby)
+
+(snippet [__END__
+])

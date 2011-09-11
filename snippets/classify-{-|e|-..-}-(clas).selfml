@@ -1,0 +1,8 @@
+(name [classify { |e| .. }])
+
+(trigger
+    (tab cl))
+
+(only-in source.ruby)
+
+(snippet [classify { |%{1="e"}| %{0} }])

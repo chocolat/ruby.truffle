@@ -1,0 +1,8 @@
+(name [reject { |e| .. }])
+
+(trigger
+    (tab rej))
+
+(only-in source.ruby)
+
+(snippet [reject { |%{1="e"}| %{0} }])

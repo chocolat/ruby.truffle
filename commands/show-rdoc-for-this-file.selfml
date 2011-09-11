@@ -1,0 +1,30 @@
+(trigger)
+
+(name [Show for Current File / Project])
+
+(only-in source.ruby)
+
+(input nothing)
+
+(output html)
+
+(save file)
+
+(script [if (( ${#TM_PROJECT_DIRECTORY} != 0 )); then
+    cd "$TM_PROJECT_DIRECTORY"
+    output="`basename "$TM_PROJECT_DIRECTORY"`"
+    input="."
+else
+    cd "$TM_DIRECTORY"
+    output="$TM_FILENAME"
+    input="$TM_FILENAME"
+fi
+
+output_dir="/tmp/rdoc_${output}"
+
+rm -rf "${output_dir}"
+
+rdoc -S -N -q -f html --op "${output_dir}" "$input" &>/dev/null
+
+echo "<html><head><meta http-equiv=\"refresh\" content=\"0;URL=tm-file://${output_dir}/index.html\"></head></html>"
+])

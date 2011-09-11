@@ -1,0 +1,8 @@
+(name [each_index { |i| .. }])
+
+(trigger
+    (tab eai))
+
+(only-in source.ruby)
+
+(snippet [each_index { |%{1="i"}| %{0} }])

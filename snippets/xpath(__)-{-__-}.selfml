@@ -1,0 +1,10 @@
+(name [xpath(..) { .. }])
+
+(trigger
+    (tab xpa))
+
+(only-in source.ruby)
+
+(snippet [elements.each(%{1=""%{2="//XPath"}""}) do |%{3="node"}|
+	%{0}
+end])

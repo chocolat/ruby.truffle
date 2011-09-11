@@ -1,0 +1,23 @@
+(trigger
+    (key [[cmd]B]))
+
+(name Bold)
+
+(only-in [source.ruby comment])
+
+(input selection word)
+
+(output snippet)
+
+(save nothing)
+
+(script [#!/usr/bin/env ruby
+s = STDIN.read
+case s
+when /^\w+$/
+  print "*#{s}*$0"
+when ""
+  print "*$1*$0"
+else
+  print "<b>#{s}</b>"
+end])

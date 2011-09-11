@@ -1,0 +1,10 @@
+(name [New Block])
+
+(trigger
+    (tab =b))
+
+(only-in source.ruby)
+
+(snippet [`[[ $TM_LINE_INDEX != 0 ]] && echo; echo`=begin rdoc
+	%{0}
+=end])

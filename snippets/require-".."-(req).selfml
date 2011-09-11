@@ -1,0 +1,8 @@
+(name [require ".."])
+
+(trigger
+    (tab req))
+
+(only-in source.ruby)
+
+(snippet [require "%{0}"])

@@ -1,0 +1,8 @@
+(name [detect { |e| .. }])
+
+(trigger
+    (tab det))
+
+(only-in source.ruby)
+
+(snippet [detect { |%{1="e"}| %{0} }])

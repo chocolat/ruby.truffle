@@ -1,0 +1,8 @@
+(name [each_cons(..) { |group| .. }])
+
+(trigger
+    (tab eac-))
+
+(only-in source.ruby)
+
+(snippet [each_cons(%{1="2"}) { |%{2="group"}| %{0} }])

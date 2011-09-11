@@ -1,0 +1,8 @@
+(name [randomize()])
+
+(trigger
+    (tab ran))
+
+(only-in source.ruby)
+
+(snippet [sort_by { rand }])

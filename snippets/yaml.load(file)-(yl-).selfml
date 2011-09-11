@@ -1,0 +1,8 @@
+(name [YAML.load(file)])
+
+(trigger
+    (tab Yl-))
+
+(only-in source.ruby)
+
+(snippet [File.open(%{1=""%{2="path/to/file"}.yaml""}) { |%{3="file"}| YAML.load(%{3="file"}) }])

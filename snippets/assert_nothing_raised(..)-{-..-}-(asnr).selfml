@@ -1,0 +1,8 @@
+(name [assert_nothing_raised(..) { .. }])
+
+(trigger
+    (tab asnr))
+
+(only-in source.ruby)
+
+(snippet [assert_nothing_raised(%{1="Exception"}) { %{0} }])
