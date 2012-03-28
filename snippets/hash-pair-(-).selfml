@@ -5,4 +5,4 @@
 
 (only-in source.ruby)
 
-(snippet [:%{1="key"} => %{2=""%{3="value"}""}%{4=", "}])
+(snippet [:%{1="key"} => %{2="\"%{3="value"}\""}%{4=", "}])

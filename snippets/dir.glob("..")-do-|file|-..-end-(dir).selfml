@@ -5,4 +5,4 @@
 
 (only-in source.ruby)
 
-(snippet [Dir.glob(%{1=""%{2="dir/glob/*"}""}) { |%{3="file"}| %{0} }])
+(snippet [Dir.glob(%{1="\"%{2="dir/glob/*"}\""}) { |%{3="file"}| %{0} }])

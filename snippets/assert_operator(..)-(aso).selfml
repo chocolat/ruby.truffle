@@ -5,4 +5,4 @@
 
 (only-in source.ruby)
 
-(snippet [assert_operator`snippet_paren.rb`%{1="left"}, :%{2="operator"}, %{0="right"}`snippet_paren.rb end`])
+(snippet [assert_operator%{`snippet_paren.rb`}%{1="left"}, :%{2="operator"}, %{0="right"}%{`snippet_paren.rb end`}])

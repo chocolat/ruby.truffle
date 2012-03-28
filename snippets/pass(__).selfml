@@ -1,0 +1,8 @@
+(name [pass(..)])
+
+(trigger
+    (tab pas))
+
+(only-in source.ruby)
+
+(snippet [pass%{`snippet_paren.rb`}"%{1="Message."}"%{`snippet_paren.rb end`}%{0}])

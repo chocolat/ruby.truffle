@@ -1,0 +1,19 @@
+(trigger
+    (key [[ctrl]=]))
+
+(name [Toggle Ruby Hash 1.8/1.9 Syntax])
+
+(input selection line)
+
+(output replace-selected)
+
+(save nothing)
+
+(script [#!/usr/bin/env ruby
+
+print case str = STDIN.read
+  when /=>/;                 str.gsub(/:(\w+)[\s]+=>[\s]+/, '\1: ')
+  when /(\w+):/;             str.gsub(/(\w+):(\s*(?:"(?:\\"|[^"])*"|'(?:\\'|[^'])*'|\w+\([^)]*\)|[^,]+))/, ":\\1 =>\\2")
+  else;                      str
+end
+])

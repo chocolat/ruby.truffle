@@ -1,0 +1,8 @@
+(name [skip(..)])
+
+(trigger
+    (tab ski))
+
+(only-in source.ruby)
+
+(snippet [skip%{`snippet_paren.rb`}"%{1="Message."}"%{`snippet_paren.rb end`}%{0}])

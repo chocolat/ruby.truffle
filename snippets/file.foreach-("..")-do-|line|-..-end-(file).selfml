@@ -5,4 +5,4 @@
 
 (only-in source.ruby)
 
-(snippet [File.foreach(%{1=""%{2="path/to/file"}""}) { |%{3="line"}| %{0} }])
+(snippet [File.foreach(%{1="\"%{2="path/to/file"}\""}) { |%{3="line"}| %{0} }])

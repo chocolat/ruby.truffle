@@ -5,4 +5,4 @@
 
 (only-in source.ruby)
 
-(snippet [PStore.new(%{1=""%{2="file_name.pstore"}""})])
+(snippet [PStore.new(%{1="\"%{2="file_name.pstore"}\""})])

@@ -157,7 +157,8 @@
             (include @interpolated_ruby)
             (include @escaped_char)))
     (zone keyword.operator.assignment.augmented.ruby
-        (match /=))
+        (match
+            (regex [(?<!\()/=])))
     (zone string.quoted.single.ruby
         (start
             (regex '

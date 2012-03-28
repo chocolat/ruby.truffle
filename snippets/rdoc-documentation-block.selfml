@@ -5,6 +5,6 @@
 
 (only-in source.ruby)
 
-(snippet [`[[ $TM_LINE_INDEX != 0 ]] && echo; echo`=begin rdoc
+(snippet [%{`[[ $TM_LINE_INDEX != 0 ]] && echo; echo`}=begin rdoc
 	%{0}
 =end])

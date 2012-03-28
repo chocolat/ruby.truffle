@@ -5,4 +5,4 @@
 
 (only-in source.ruby)
 
-(snippet [Dir[%{1=""%{2="glob/**/*.rb"}""}]])
+(snippet [Dir[%{1="\"%{2="glob/**/*.rb"}\""}]])

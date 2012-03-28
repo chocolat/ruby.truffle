@@ -1,8 +1,8 @@
 (name [flunk(..)])
 
 (trigger
-    (tab fl))
+    (tab flu))
 
 (only-in source.ruby)
 
-(snippet [flunk`snippet_paren.rb`"%{0="Failure message."}"`snippet_paren.rb end`])
+(snippet [flunk%{`snippet_paren.rb`}"%{1="Failure message."}"%{`snippet_paren.rb end`}%{0}])

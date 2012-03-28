@@ -5,4 +5,4 @@
 
 (only-in source.ruby)
 
-(snippet [assert_not_same`snippet_paren.rb`%{1="unexpected"}, %{0="actual"}`snippet_paren.rb end`])
+(snippet [assert_not_same%{`snippet_paren.rb`}%{1="unexpected"}, %{0="actual"}%{`snippet_paren.rb end`}])

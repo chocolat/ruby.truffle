@@ -5,4 +5,4 @@
 
 (only-in source.ruby)
 
-(snippet [File.read(%{1=""%{2="path/to/file"}""})])
+(snippet [File.read(%{1="\"%{2="path/to/file"}\""})])
