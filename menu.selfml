@@ -1,7 +1,4 @@
-(menu command.run
-    command.run-focused-unit-test
-    ---
-    command.lookup-in-documentation
+(menu
     (submenu RDoc
         command.show-rdoc-for-this-file
         ---
@@ -10,12 +7,9 @@
         command.omit-from-rdoc
         ---
         snippet.yields-rdoc-comment)
-    ---
     command.execute-line-with-ruby
     [snippet.add-'#-=>'-marker]
     ---
-    command.insert-missing-requires
-    command.make-destructive-call
     command.toggle-string-symbol
     snippet.insert-erb's-<%-__-%>-or-<%=-__-%>
     ---
@@ -54,5 +48,5 @@
     (submenu Files [snippet.open("path;or;url",-"w")-do-|doc|-..-end-(ope)] --- [snippet.file.foreach-("..")-do-|line|-..-end-(file)] [snippet.file_read("__")] [snippet.file_open("__")-{-|file|-__-}] --- [snippet.dir.glob("..")-do-|file|-..-end-(dir)] [snippet.dir["__"]] [snippet.directory()] [snippet.path_from_here(-__-)] --- [snippet.unix_filter-..-(uni)] [snippet.option_parse-{-..-}-(optp)] snippet.untitled)
     (submenu Tests [snippet.class-..-<-test;;unit;;testcase-..-end-(tc)] [snippet.def-test_-..-end-(t)] [snippet.require-"tc_.."-..-(ts)] --- [snippet.assert(..)-(as)] snippet.assert_equal [snippet.assert_not_equal(..)-(asne)] [snippet.assert_in_delta(..)-(asid)] [snippet.assert_instance_of(..)-(asio)] [snippet.assert_kind_of(..)-(asko)] [snippet.assert_nil(..)-(asn)] [snippet.assert_not_nil(..)-(asnn)] [snippet.assert_match(..)-(asm)] [snippet.assert_no_match(..)-(asnm)] [snippet.assert_operator(..)-(aso)] [snippet.assert_raise(..)-{-..-}-(asr)] [snippet.assert_nothing_raised(..)-{-..-}-(asnr)] [snippet.assert_respond_to(..)-(asrt)] [snippet.assert_same(..)-(ass)] [snippet.assert_not_same(..)-(asns)] [snippet.assert_send(..)-(ass)] [snippet.assert_throws(..)-{-..-}-(ast)] [snippet.assert_nothing_thrown-{-..-}-(asnt)] --- [snippet.flunk(..)-(fl)] [snippet.skip(__)] [snippet.pass(__)] --- [snippet.benchmark_bmbm(__)-do-__-end] [snippet.results_report(__)-{-__-}])
     (submenu Serialization [snippet.marshal.dump(obj,-file)-(md)] [snippet.marshal.load(obj)-(ml)] --- [snippet.pstore_new(-__-)] [snippet.transaction(-__-)-do-__-end] --- [snippet.yaml.dump(..,-file)-(yd-)] [snippet.yaml.load(file)-(yl-)] --- [snippet.xmlread(__)] [snippet.xpath(__)-{-__-}])
-    (submenu Idioms [snippet.class_from_name()-(clafn)] [snippet.deep_copy(..)-(dee)] [snippet.singleton_class()] [command.word_wrap()-(worw)])
-    (submenu Rake command.run-rake-task --- snippet.namespace-__-do-__-end [snippet.task-task_name-=>-[-dependent,-tasks]-do-__-end]))
+    (submenu Idioms [snippet.class_from_name()-(clafn)] [snippet.deep_copy(..)-(dee)] [snippet.singleton_class()])
+    (submenu Rake snippet.namespace-__-do-__-end [snippet.task-task_name-=>-[-dependent,-tasks]-do-__-end]))
