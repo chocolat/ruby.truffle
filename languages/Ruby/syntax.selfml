@@ -459,6 +459,65 @@
             (zone
                 (match
                     (regex \\.)))))
+    (zone constant.other.symbol.literal.ruby
+        (start
+            (regex [%i\(]
+                (0 punctuation.definition.constant.ruby)))
+        (end
+            (regex [\)]
+                (0 punctuation.definition.constant.ruby)))
+        (subzones
+            (zone constant.character.escape.ruby
+                (match
+                    (regex [\\\)|\\\\])))
+            (include @nest_parens)))
+    (zone constant.other.symbol.literal.ruby
+        (start
+            (regex [%i\<]
+                (0 punctuation.definition.constant.ruby)))
+        (end
+            (regex \>
+                (0 punctuation.definition.constant.ruby)))
+        (subzones
+            (zone constant.character.escape.ruby
+                (match
+                    (regex \\\>|\\\\)))
+            (include @nest_ltgt)))
+    (zone constant.other.symbol.literal.ruby
+        (start
+            (regex `%i\[`
+                (0 punctuation.definition.constant.ruby)))
+        (end
+            (regex `\]`
+                (0 punctuation.definition.constant.ruby)))
+        (subzones
+            (zone constant.character.escape.ruby
+                (match
+                    (regex `\\\]|\\\\`)))
+            (include @nest_brackets)))
+    (zone constant.other.symbol.literal.ruby
+        (start
+            (regex [%i\{]
+                (0 punctuation.definition.constant.ruby)))
+        (end
+            (regex [\}]
+                (0 punctuation.definition.constant.ruby)))
+        (subzones
+            (zone constant.character.escape.ruby
+                (match
+                    (regex [\\\}|\\\\])))
+            (include @nest_curly)))
+    (zone constant.other.symbol.literal.ruby
+        (start
+            (regex [%i([^\w])]
+                (0 punctuation.definition.constant.ruby)))
+        (end
+            (regex \1
+                (0 punctuation.definition.constant.ruby)))
+        (subzones
+            (zone
+                (match
+                    (regex \\.)))))
     (zone constant.other.symbol.ruby
         (match
             (regex [(?<!:)(:)(?>[a-zA-Z_]\w*(?>[?!]|=(?![>=]))?|===?|>[>=]?|<[<=]?|<=>|[%&`/\|]|\*\*?|=?~|[-+]@?|\[\]=?|@@?[a-zA-Z_]\w*)]
